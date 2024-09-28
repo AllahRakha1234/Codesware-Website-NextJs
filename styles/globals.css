@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 640px) {
+  .cartBox {
+    margin-top: 2px;
+    width: 50vw;
+  }
+
+  .tshirtBox {
+    margin: 0px auto;
+  }
+
+  .hoddieBox {
+    margin: 0px auto;
+  }
+
+  .stickerBox {
+    margin: 0px auto;
+  }
+
+  .mugBox {
+    margin: 0px auto;
+  }
+
+  .addToCartBtn {
+    font-size: small;
+    padding: 8px 8px;
+  }
+
+  .checkBtn {
+    font-size: small;
+    padding: 8px 8px;
+  }
+
+  .pinInput {
+    margin-right: 3vw;
+  }
+
+  .slugImg {
+    padding: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .webTitleMenuOptionBox {
+    margin-left: 7vw;
+  }
+
+  .cartLoginBtnBox {
+    margin-top: 10px;
+    margin-left: -2vw;
+  }
+
+  .loginBtn {
+    height: 10vh;
+    width: 10vh;
+  }
+
+  .cartBtn {
+    height: 10vh;
+    width: 10vh;
+    margin-left: -10px;
+  }
+
+  .cartBox {
+    margin-top: 2px;
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .webTitleMenuOptionBox {
+    margin-left: 4vw;
+  }
+
+  .menuOption {
+    font-size: medium;
+  }
+
+  .cartLoginBtnBox {
+    margin-right: 8vw;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .menuOption {
+    font-size: medium;
+  }
+
+  .cartBox {
+    margin-left: 2vw;
+    width: 50vw;
+  }
+
+  .tshirtBox {
+    margin: 0px auto;
+  }
+
+  .pinInput {
+    margin-right: 3vw;
+    width: 160px;
+  }
+
+  .slugPrice {
+    font-size: small;
+    margin-top: 1vh;
+    margin-right: 1px;
+  }
+
+  .addToCartBtn {
+    margin-top: 2vh;
+    font-size: small;
+    padding: 4px 4px;
+    width: 25vw;
+    height: 8vh;
+  }
+
+  .checkBtn {
+    margin-top: 2vh;
+    font-size: small;
+    padding: 4px 4px;
+    width: 25vw;
+    height: 8vh;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .webTitleMenuOptionBox {
+    margin-left: 5vw;
+  }
+
+  .menuOption {
+    font-size: small;
+  }
+
+  .cartLoginBtnBox {
+    margin-right: 8vw;
+  }
+
+  .loginBtn {
+    height: 8vh;
+    width: 8vh;
+  }
+
+  .cartBtn {
+    height: 8vh;
+    width: 8vh;
+    margin-left: -10px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .webTitleMenuOptionBox {
+    margin-left: 2vw;
+  }
+
+  .titleLogoBox {
+    width: 75vw;
+    margin-right: 5vw;
+  }
+
+  .menuOption {
+    font-size: 0.7rem;
+  }
+
+  .cartLoginBtnBox {
+    margin-left: -10vw;
+  }
+
+  .loginBtn {
+    height: 8vh;
+    width: 8vh;
+  }
+
+  .cartBtn {
+    height: 8vh;
+    width: 8vh;
+    margin-left: -10px;
+  }
+}
