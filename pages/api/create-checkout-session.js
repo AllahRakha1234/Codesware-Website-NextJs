@@ -2,7 +2,7 @@ import connectDb from "../../middleware/mongoose";
 var CryptoJS = require("crypto-js");
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripe = require("stripe")(`${process.env.NEXT_PUBLIC_SECRET_KEY}`);
 
 const handler = async (req, res) => {
     if (req.method == "POST") {
