@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { FaCcAmazonPay } from "react-icons/fa";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import {checkout} from "./api/checkout";
 
 const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
   return (
@@ -181,7 +182,15 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
         </div>
         <div className="flex my-2">
           <Link href={"/checkoutpage"}>
-            <button className="mr-1 flex-shrink-0 inline-flex text-white bg-pink-500 border-0 py-1 px-2 focus:outline-none hover:bg-pink-600 rounded">
+            <button className="mr-1 flex-shrink-0 inline-flex text-white bg-pink-500 border-0 py-1 px-2 focus:outline-none hover:bg-pink-600 rounded"
+            onClick={() => {
+              checkout({
+                lineItems: [
+                  { cart: cart, subTotal: subTotal },
+                ],
+              });
+            }}
+            >
               <FaCcAmazonPay className="mt-1 mr-1 text-lg" /> Pay Now
             </button>
           </Link>
