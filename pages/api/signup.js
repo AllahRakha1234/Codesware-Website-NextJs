@@ -5,10 +5,12 @@ var CryptoJS = require("crypto-js");
 const handler = async (req, res) => {
   if (req.method == "POST") {
     let { name, email } = req.body;
+    // Access the AES secret key from environment variables
+    const secretKey = process.env.AES_SECRET_KEY;
     let user = new User({
       name,
       email,
-      password: CryptoJS.AES.encrypt(req.body.password, "secret123").toString(),
+      password: CryptoJS.AES.encrypt(req.body.password, secretKey).toString(),
     });
     await user.save();
     console.log(user);

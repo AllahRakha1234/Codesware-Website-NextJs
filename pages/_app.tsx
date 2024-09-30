@@ -15,7 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
   let router = useRouter();
 
   useEffect(() => {
-    console.log("I am useEffect!");
     // LOADING BAR
     router.events.on("routeChangeStart", () => {
       setProgress(40);
