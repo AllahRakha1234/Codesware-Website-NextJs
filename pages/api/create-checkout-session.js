@@ -7,51 +7,43 @@ const handler = async (req, res) => {
   if (req.method == "POST") {
     let { products } = req.body;
 
-
-    // --> FOR SAVING ORDER IN DATABASE
-    const data = products.map((product) => {
-        return {
-            cart: product.cart,
-            subTotal: product.subTotal,
-            oid: product.oid,
-            name: product.name,
-            email: product.email,
-            address: product.address,
-            phone: product.phone,
-            city: product.city,
-            state: product.state,
-        };
-    })
+    // Create your order in the database
+    const data = products.map((product) => ({
+      cart: product.cart,
+      subTotal: product.subTotal,
+      oid: product.oid,
+      name: product.name,
+      email: product.email,
+      address: product.address,
+      phone: product.phone,
+      city: product.city,
+      state: product.state,
+    }));
     const order = new Order({
-        email: data[0].email,
-        orderId: data[0].oid,
-        products: data[0].cart,
-        address: data[0].address,
-        amount: data[0].subTotal,
+      email: data[0].email,
+      orderId: data[0].oid, // <-- This will be used later in post-session
+      products: data[0].cart,
+      address: data[0].address,
+      amount: data[0].subTotal,
+      status: "Pending", // Initial status
     });
     await order.save();
 
-
-    // --> FOR SESSION ID PURPOSE 
     // Extract and map the products to the structure required by Stripe's API
     const lineItems = products.flatMap((productObj) => {
-      // Extract cart object from each productObj
       const cart = productObj.cart;
-
-      // Map each product inside the cart object
       return Object.keys(cart).map((productKey) => {
-        const product = cart[productKey]; // Access each product object by its key
-
+        const product = cart[productKey];
         return {
           price_data: {
-            currency: "pkr", // Define your currency here
+            currency: "pkr",
             product_data: {
-              name: product.name, // Assuming the product has a name field
-              description: `Size: ${product.size}, Variant: ${product.variant}`, // Add custom description based on size and variant
+              name: product.name,
+              description: `Size: ${product.size}, Variant: ${product.variant}`,
             },
-            unit_amount: product.price * 100, // Stripe expects the amount in cents
+            unit_amount: product.price * 100,
           },
-          quantity: product.qty, // Assuming product has a qty field
+          quantity: product.qty,
         };
       });
     });
@@ -63,6 +55,7 @@ const handler = async (req, res) => {
         mode: "payment",
         success_url: "http://localhost:3000/successpage",
         cancel_url: "http://localhost:3000/cancelpage",
+        client_reference_id: order.orderId, // <-- Attach the orderId to session
       });
 
       res.status(200).json({ message: "Success!", session_id: session.id });
